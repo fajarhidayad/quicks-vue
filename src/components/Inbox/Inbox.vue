@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { useQuery } from '@tanstack/vue-query';
 import { ref } from 'vue';
-import Popover from '../Popover.vue';
+import { getMessageRoom } from '../../api';
 import SearchIcon from '../../assets/icons/SearchIcon.vue';
+import Loading from '../Loading.vue';
+import Popover from '../Popover.vue';
 import InboxItem from './InboxItem.vue';
 import InboxRoom from './InboxRoom.vue';
-import { useQuery, useQueryClient } from '@tanstack/vue-query';
-import { getMessageRoom } from '../../api';
-import Loading from '../Loading.vue';
 
 const props = defineProps<{ isActive: boolean }>()
 
@@ -17,7 +17,7 @@ const popoverActive = ref(false);
 const isRoomActive = ref(false)
 const idRoom = ref<number>(0)
 
-const queryClient = useQueryClient()
+// const queryClient = useQueryClient()
 
 const { data: messageRooms, isLoading } = useQuery({
   queryKey: ['messageRoom'],
